@@ -1,0 +1,44 @@
+<!-- Example DataTables Card-->
+<div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Danh sách đơn hàng mới nhất</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Mã ĐH</th>
+                  <th>Ngày đặt</th>
+                  <th>Tổng giá trị</th>
+                  <th>Tùy chọn</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let i of data">
+                  <td>{{ i.id }}</td>
+                  <td>{{ i.created }}</td>
+                  <td>{{ i.total }}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary" (click)="orderDetail(i.id)">Lịch sử mua hàng</button>
+                    <button type="button" class="btn btn-danger" (click)="delete(i)">Xóa</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- <div class="card-footer small text-muted">
+          <div class="pull-left">Updated yesterday at {{ timeUpdate | date:'hh:mm' }} {{ timeZ }}</div>
+          <div class="pull-right">
+              <ngb-pagination 
+              class="pull-right"
+              [collectionSize]="pageSize" 
+              [(page)]="page" 
+              [maxSize]="5" 
+              [rotate]="true" 
+              [boundaryLinks]="true"
+              (pageChange)="loadPage($event)">
+            </ngb-pagination>
+            </div>
+        </div> -->
+      </div>

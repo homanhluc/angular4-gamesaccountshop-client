@@ -1,0 +1,36 @@
+<!-- Example DataTables Card-->
+<div class="card mb-3">
+  <div class="card-header">
+    <i class="fa fa-table"></i> Danh sách đơn hàng mới nhất</div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Mã SP</th>
+            <th>Ảnh sản phẩm</th>
+            <th>Sản phẩm</th>
+            <th>Giá bán</th>
+            <th>Tùy chọn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of data">
+            <td>{{ i.id }}</td>
+            <td>
+              <img [src]="i.image" height="50px" alt="">
+            </td>
+            <td>{{ i.name }}</td>
+            <td>{{ i.price }}</td>
+            <td>
+              <button type="button" class="btn btn-primary">Sửa thông tin</button>
+              <button (click)="edit(i)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProductModel">Cập nhật ảnh</button>
+              <button type="button" class="btn btn-danger">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<app-product-form [passData]="dataItem"></app-product-form>

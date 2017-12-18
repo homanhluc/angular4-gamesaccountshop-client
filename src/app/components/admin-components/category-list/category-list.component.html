@@ -1,0 +1,31 @@
+<!-- Example DataTables Card-->
+<div class="card mb-3">
+  <div class="card-header">
+    <i class="fa fa-table"></i> Danh sách danh mục</div>
+  <div class="card-body">
+    <button class="btn btn-primary" (click)="addCatagory()" style="margin-bottom:10px" data-toggle="modal" data-target="#addCategoryModel">Thêm danh mục</button>
+    <div class="table-responsive">
+      <table class="table table-bordered" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Mã</th>
+            <th>Tên danh mục</th>
+            <th>Tùy chọn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of data">
+            <td>{{ i.id }}</td>
+            <td>{{ i.name }}</td>
+            <td>
+              <button (click)="editById(i.id, i.name)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCategoryModel">Sửa</button>
+              <button (click)="delete(i.id)" type="button" class="btn btn-danger">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- Model đổi tên danh mục -->
+<app-category-form passId="{{ id }}" passName="{{ name }}"></app-category-form>
