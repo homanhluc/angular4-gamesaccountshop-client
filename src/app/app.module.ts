@@ -25,6 +25,7 @@ import { ProductUploadComponent } from './components/admin-components/product-up
 import { LayoutAdminComponent } from './components/admin-components/layout-admin/layout-admin.component';
 import { LoginFormComponent } from './components/login-components/login-form/login-form.component';
 import { LayoutCustomerComponent } from './components/customer-component/layout-customer/layout-customer.component';
+import { ChatBoxComponent } from './components/admin-components/chat-box/chat-box.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { LayoutCustomerComponent } from './components/customer-component/layout-
     ProductUploadComponent,
     LayoutAdminComponent,
     LoginFormComponent,
-    LayoutCustomerComponent
+    LayoutCustomerComponent,
+    ChatBoxComponent
   ],
   imports: [
     BrowserModule,

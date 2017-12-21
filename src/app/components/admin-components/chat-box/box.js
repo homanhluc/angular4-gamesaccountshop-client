@@ -1,18 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Webapp</title>
-  <base href="/">
-  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  
-</head>
-<body>
-  <app-root></app-root>
-  <script>
-  $(document).ready(function(){
+$(document).ready(function(){
     
     $('.chat_head').click(function(){
       $('.chat_body').slideToggle('slow');
@@ -43,6 +29,4 @@
           }
       });
     
-    });</script>
-</body>
-</html>
+    });

@@ -1,0 +1,28 @@
+<div class="chat_box">
+	<div class="chat_head"> Chat Box</div>
+	<div class="chat_body"> 
+	<div class="user" *ngFor="let i of users"> {{i}}</div>
+	</div>
+  </div>
+
+<div class="msg_box" style="right:290px">
+	<div class="msg_head">Krishna Teja
+	<div class="close">x</div>
+	</div>
+	<div class="msg_wrap">
+		<div class="msg_body">
+			<div class="msg_a"  *ngIf="message.from !== nickname" class="message" [ngClass]="{'my_message': message.from === nickname, 'other_message': message.from !== nickname}">
+          {{ message.from }} / {{ message.text }} / {{message.created | date:'dd.MM hh:MM'}}
+      </div>
+			<div class="msg_b" *ngIf="message.from === nickname" class="message" [ngClass]="{'my_message': message.from === nickname, 'other_message': message.from !== nickname}">
+          {{ message.from }} / {{ message.text }} / {{message.created | date:'dd.MM hh:MM'}}
+      </div>
+			<div class="msg_push"></div>
+		</div>
+	<div class="msg_footer">
+    <!-- <textarea class="msg_input" rows="4"></textarea> -->
+    <input type="text" placeholder="Message" [(ngModel)]="message">
+    <button (click)="sendMessage()" [disabled]="message === ''">Gui</button>
+  </div>
+</div>
+</div>
