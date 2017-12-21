@@ -1,28 +1,33 @@
 <div class="chat_box">
 	<div class="chat_head"> Chat Box</div>
-	<div class="chat_body"> 
-	<div class="user" *ngFor="let i of users"> {{i}}</div>
+	<div class="chat_body">
+		<div class="user" *ngFor="let i of users"> {{i}}</div>
 	</div>
-  </div>
-
-<div class="msg_box" style="right:290px">
-	<div class="msg_head">Krishna Teja
-	<div class="close">x</div>
-	</div>
-	<div class="msg_wrap">
-		<div class="msg_body">
-			<div class="msg_a"  *ngIf="message.from !== nickname" class="message" [ngClass]="{'my_message': message.from === nickname, 'other_message': message.from !== nickname}">
-          {{ message.from }} / {{ message.text }} / {{message.created | date:'dd.MM hh:MM'}}
-      </div>
-			<div class="msg_b" *ngIf="message.from === nickname" class="message" [ngClass]="{'my_message': message.from === nickname, 'other_message': message.from !== nickname}">
-          {{ message.from }} / {{ message.text }} / {{message.created | date:'dd.MM hh:MM'}}
-      </div>
-			<div class="msg_push"></div>
-		</div>
-	<div class="msg_footer">
-    <!-- <textarea class="msg_input" rows="4"></textarea> -->
-    <input type="text" placeholder="Message" [(ngModel)]="message">
-    <button (click)="sendMessage()" [disabled]="message === ''">Gui</button>
-  </div>
 </div>
+
+<div class="float">
+	<div class="msg_box" *ngFor="let u of users">
+		<div class="msg_head"> {{u}}
+			<div class="close">x</div>
+		</div>
+		<div class="msg_wrap">
+			<div class="msg_body">
+				<div *ngFor="let i of messages">
+					<div class="msg_a" *ngIf="i.from === u">
+						{{ i.from }} / {{ i.text }} / {{i.created | date:'dd.MM hh:MM'}}
+					</div>
+					<div class="msg_b" *ngIf="i.from === 'Admin'">
+						{{ i.from }} / {{ i.text }} / {{i.created | date:'dd.MM hh:MM'}}
+					</div>
+				</div>
+				<div class="msg_push"></div>
+			</div>
+			<div class="msg_footer">
+				<p *ngIf="u === typing.from" [hidden]="u !== typing.from" style="font-size: 12px; color:gray; padding-left:5px;">
+					{{typing.status}}
+				</p>
+				<input (focus) = "typingMessageOn(u)" (focusout) = "typingMessageOff(u)" height="30px" (keyup.enter)="sendMessage(u)" placeholder="Nhập tin nhắn..." class="msg_input" rows="2" [(ngModel)]="message.text">
+			</div>
+		</div>
+	</div>
 </div>

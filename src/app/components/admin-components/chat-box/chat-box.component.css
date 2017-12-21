@@ -1,39 +1,49 @@
-body{
-	background:#16a085;
-	margin:0px;
-	height:900px;
-	font-family: sans-serif;
-}
-
-.chat_box{
+.float {
 	position:fixed;
-	right:20px;
+	bottom:0;
+	z-index: 10;
+	right: 250px;
+}
+input{
+	text-indent: 10px;
+  }
+.chat_box{
+	position: fixed;
+	right:0;
 	bottom:0px;
 	width:250px;
+	z-index: 10;
 }
 .chat_body{
 	background:white;
 	height:400px;
 	padding:5px 0px;
+	border: solid 1px #f39c12;
 }
 
 .chat_head,.msg_head{
 	background:#f39c12;
 	color:white;
-	padding:15px;
+	padding:5px;
 	font-weight:bold;
 	cursor:pointer;
 	border-radius:5px 5px 0px 0px;
 }
 
 .msg_box{
-	position:fixed;
+	float: right;
 	bottom:-5px;
 	width:250px;
 	background:white;
 	border-radius:5px 5px 0px 0px;
-}
+	padding-right: 5px;
 
+}
+.msg_footer {
+	border-bottom: solid 1px #3498db;
+	border-left: solid 1px #3498db;
+	border-right: solid 1px #3498db;
+}
 .msg_head{
 	background:#3498db;
 }
@@ -45,6 +55,9 @@ body{
 	padding:15px;
 	overflow:auto;
 	overflow-x: hidden;
+	border-top: solid 1px #3498db;
+	border-left: solid 1px #3498db;
+	border-right: solid 1px #3498db;
 }
 .msg_input{
 	width:100%;

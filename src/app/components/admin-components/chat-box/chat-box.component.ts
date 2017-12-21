@@ -13,29 +13,59 @@ export class ChatBoxComponent implements OnInit {
   socket = null;
   nickname = 'Admin';
   messages = [];
-  message = '';
+  message = {
+    from : '',
+    text: '',
+    created: '',
+    user: {}
+};
   users: any;
+  typing: any;
   constructor() { }
 
   ngOnInit() {
     this.socket = io('http://localhost:3001');
-    this.socket.emit('set-nickname', this.nickname);
+    this.socket.emit('admin-online', this.nickname);
     this.getMessages().subscribe(message => {
       this.messages.push(message);
       console.log(message);
     });
-
-    this.getUsers().subscribe(data => {
-      const user = data['user'];
-      console.log(user);
-    });
     this.getListUsers().subscribe(data => {
       this.users = data;
     });
+    this.userTypingMessage().subscribe(data => {
+      this.typing = data;
+      console.log(this.typing);
+    });
   }
-  sendMessage() {
-    this.socket.emit('admin-add-message', { text: this.message });
-    this.message = '';
+  typingMessageOn(user) {
+    this.socket.emit('typing-message-on', {
+      user: user
+    });
+  }
+  typingMessageOff(user) {
+    this.socket.emit('typing-message-off', {
+      user: user
+    });
+  }
+  userTypingMessage() {
+    const observable = new Observable(observer => {
+      this.socket.on('user-admin-typing-message-on', (data) => {
+        observer.next(data);
+      });
+      this.socket.on('user-admin-typing-message-off', (data) => {
+        observer.next(data);
+      });
+    });
+    return observable;
+  }
+  sendMessage(user) {
+    console.log(user);
+    this.socket.emit('admin-add-message', {
+      text: this.message.text,
+      user: user
+     });
+    this.message.text = '';
   }
   getListUsers() {
     const observable = new Observable(observer => {
@@ -48,6 +78,9 @@ export class ChatBoxComponent implements OnInit {
   getMessages() {
     const observable = new Observable(observer => {
       this.socket.on('message-admin', (data) => {
+        observer.next(data);
+      });
+      this.socket.on('message-user', (data) => {
         observer.next(data);
       });
     });
